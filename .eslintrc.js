@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ['standard'],
+  extends: ["standard", "prettier", "plugin:json/recommended"],
   parserOptions: {
     ecmaVersion: 12
   },
@@ -13,3 +13,4 @@ module.exports = {
     'space-before-function-paren': 2
   }
 }
+
