@@ -21,13 +21,16 @@ const transactionSchema = Schema({
     default: 'null'
   },
   year: {
-    type: String
+    type: String,
+    default: ''
   },
   month: {
-    type: String
+    type: String,
+    default: ''
   },
   day: {
-    type: String
+    type: String,
+    default: ''
   }
 }, { versionKey: false, timeStamps: true })
 
