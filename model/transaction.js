@@ -13,10 +13,12 @@ const transactionSchema = Schema({
     type: Boolean
   },
   expenseCategories: {
-    type: String
+    type: String,
+    default: 'null'
   },
   incomeCategories: {
-    type: String
+    type: String,
+    default: 'null'
   },
   year: {
     type: String

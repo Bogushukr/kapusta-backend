@@ -10,6 +10,6 @@ module.exports = {
   },
   rules: {
     'comma-dangle': 2,
-    'space-before-function-paren': 2,
+    'space-before-function-paren': 2
   }
 }

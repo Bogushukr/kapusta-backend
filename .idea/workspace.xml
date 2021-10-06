@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3524b0d-028b-402c-a846-e91b1151be35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/transactions/deleteTransaction.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/middlewares/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/validation/validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/transactions/addTransaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/transactions/addTransaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/transactions/getAll.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/transactions/getAll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/transactions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/transactions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/controllerWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/controllerWrapper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/validation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/transaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/transactions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">

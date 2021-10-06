@@ -5,9 +5,7 @@ const DB_HOST = process.env.DB_HOST
 
 const db = mongoose.connect(DB_HOST, {
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
+  useUnifiedTopology: true
 })
 
 mongoose.connection.on('connected', () => {
