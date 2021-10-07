@@ -1,36 +1,42 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require("mongoose");
 
-const transactionSchema = Schema({
+const transactionSchema = Schema(
+  {
     desc: {
-        type: String,
-        maxLength: 30,
+      type: String,
+      maxLength: 30,
+    },
+    value: {
+      type: Number,
+      default: 0,
     },
     cashIncome: {
-        type: Boolean,
+      type: Boolean,
     },
-    cashValue: {
-        type: Number,
-        default: 0,
+    expenseCategories: {
+      type: String,
+      default: "null",
     },
-    expenseCategory: {
-        type: String,
-        default: null,
-    },
-    incomeCategory: {
-        type: String,
-        default: null,
+    incomeCategories: {
+      type: String,
+      default: "null",
     },
     year: {
-        type: String,
+      type: String,
+      default: "",
     },
     month: {
-        type: String,
+      type: String,
+      default: "",
     },
     day: {
-        type: String,
+      type: String,
+      default: "",
     },
-}, { versionKey: false, timeStamps: true })
+  },
+  { versionKey: false, timeStamps: true }
+);
 
-const Transaction = model('transaction', transactionSchema)
+const Transaction = model("transaction", transactionSchema);
 
-module.exports = Transaction
+module.exports = Transaction;
