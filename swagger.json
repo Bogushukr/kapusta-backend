@@ -1,0 +1,124 @@
+{
+  "info": {
+    "version": "1.0.0",
+    "title": "Kapusta API",
+    "description": "Simple documentation for project Kapusta",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "openapi": "3.0.1",
+  "servers": [{ "url": "http://localhost:3001" }],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    },
+    {
+      "name": "Transaction",
+      "description": "Transaction endpoints"
+    }
+  ],
+  "paths": {
+    "/api/transactions": {
+      "get": {
+        "tags": ["Transaction"],
+        "summary": "Get all transactions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TransactionRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Users email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "Users password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "TransactionResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "desc": {
+              "type": "string",
+              "description": "Transaction description",
+              "example": "one litre of milk"
+            },
+            "value": {
+              "type": "integer",
+              "description": "value of transaction",
+              "example": "10000"
+            },
+            "cashIncome": {
+              "type": "boolean",
+              "description": "true == income, false == expense"
+            },
+            "expenseCategories": {
+              "type": "string",
+              "description": "expense category",
+              "example": "food"
+            },
+            "incomeCategory": {
+              "type": "string",
+              "description": "income category",
+              "example": "salary"
+            },
+            "year": {
+              "type": "integer",
+              "description": "transaction year",
+              "example": 2020
+            },
+            "month": {
+              "type": "integer",
+              "description": "transaction month",
+              "example": 9
+            },
+            "day": {
+              "type": "integer",
+              "description": "transaction day",
+              "example": 7
+            }
+          }
+        }
+      }
+    }
+  },
+  "securitySchemes": {
+    "Bearer": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    }
+  }
+}

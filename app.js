@@ -1,6 +1,8 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger.json')
 
 const { HttpCode } = require('./helpers/constants')
 // const usersRouter = require('./routes/api/users')
@@ -17,6 +19,9 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/transactions', transactionsRouter)
 // app.use('/api/users', usersRouter)
+app.use('/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument))
 
 app.use((_, res) => {
   res.status(HttpCode.BAD_REQUEST)

@@ -26,7 +26,7 @@ const userSchema = Schema({
     type: String,
     default: null
   }
-}, { versionKey: false, timeStamps: true })
+}, { versionKey: false, timestamps: true })
 
 const User = model('user', userSchema)
 

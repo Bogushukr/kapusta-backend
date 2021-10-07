@@ -32,7 +32,7 @@ const transactionSchema = Schema({
     type: String,
     default: ''
   }
-}, { versionKey: false, timeStamps: true })
+}, { versionKey: false, timestamps: true })
 
 const Transaction = model('transaction', transactionSchema)
 
