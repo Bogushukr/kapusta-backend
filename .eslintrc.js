@@ -9,7 +9,7 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
-    "comma-dangle": "off",
-    "space-before-function-paren": 2,
+    'comma-dangle': 2,
+    'space-before-function-paren': 2
   },
 };

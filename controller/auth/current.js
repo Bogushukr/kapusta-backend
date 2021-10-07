@@ -1,9 +1,9 @@
-const { User } = require("../../model");
-const { HttpCode, status } = require("../../helpers/constants");
+const { User } = require('../../model');
+const { HttpCode, status } = require('../../helpers/constants')
 
 const current = async (req, res) => {
   const { token } = req.user;
-  const { email } = await User.findOne({ token });
+  const { email } = await User.findOne({ token })
 
   res.json({
     status: status.SUCCESS,
@@ -11,7 +11,7 @@ const current = async (req, res) => {
     data: {
       email,
     },
-  });
-};
+  })
+}
 
-module.exports = current;
+module.exports = current
