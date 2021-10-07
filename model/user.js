@@ -32,6 +32,7 @@ const userSchema = Schema(
       default: null,
     },
   },
+
   { versionKey: false, timestamps: true }
 )
 
@@ -39,6 +40,7 @@ const joiSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 })
+
 
 const User = model('user', userSchema)
 

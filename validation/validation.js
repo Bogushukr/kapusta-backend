@@ -14,7 +14,7 @@ const schemaCreateTransaction = Joi.object({
   incomeCategories: Joi.string().default('null').required(),
   year: Joi.number().required(),
   month: Joi.number().required(),
-  day: Joi.number().required(),
+  day: Joi.number().required()
 })
 
 const validate = async (schema, obj, next) => {
