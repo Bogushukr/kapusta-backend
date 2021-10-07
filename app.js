@@ -5,7 +5,7 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json')
 
 const { HttpCode } = require('./helpers/constants')
-// const usersRouter = require('./routes/api/users')
+const { authRouter } = require('./routes/api')
 const transactionsRouter = require('./routes/api/transactions')
 const path = require('path')
 const app = express()
@@ -18,14 +18,16 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/transactions', transactionsRouter)
+
 // app.use('/api/users', usersRouter)
 app.use('/api-docs',
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument))
+app.use('/api/users', authRouter)
+
 
 app.use((_, res) => {
-  res.status(HttpCode.BAD_REQUEST)
-    .json({ message: 'Not found' })
+  res.status(HttpCode.BAD_REQUEST).json({ message: 'Not found' })
 })
 
 app.use((err, _, res, __) => {
