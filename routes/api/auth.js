@@ -24,5 +24,6 @@ router.get(
   controllerWrapper(authenticate),
   controllerWrapper(ctrl.current)
 );
+// router.post('/balance', userController.balance)
 
 module.exports = router;
