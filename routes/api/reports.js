@@ -15,7 +15,7 @@ router.post('/balance', controllerWrapper(ctrl.balanceSet))
 // ===== Cash-Out reports =====
 // GET Cash-Out report for Month
 router.get(
-  '/cash-out/:year/month',
+  '/cash-out/:year/:month',
   controllerWrapper(ctrl.getSpendingsForMonth)
 )
 
