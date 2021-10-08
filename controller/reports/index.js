@@ -4,7 +4,7 @@ const getIncomingsByCategoriesAndDescriptions = require('./getIncomingsByCategor
 const getIncomingsForMonth = require('./getIncomingsForMonth')
 const getIncomingsLastSixMonth = require('./getIncomingsLastSixMonth')
 const getSpendingsByCategoriesAndDescriptions = require('./getSpendingsByCategoriesAndDescriptions')
-const getSpendingsForMonth = require('./getSpendingsByCategoriesAndDescriptions')
+const getSpendingsForMonth = require('./getSpendingsForMonth')
 const getSpendingsLastSixMonth = require('./getSpendingsLastSixMonth')
 
 module.exports = {
