@@ -1,7 +1,19 @@
-const lastSixMonth = require('../reports/lastSixMonth')
-const spendingTypesSummary = require('./spendingTypesSummary')
+const balanceGet = require('./balanceGet')
+const balanceSet = require('./balanceSet')
+const getIncomingsByCategoriesAndDescriptions = require('./getIncomingsByCategoriesAndDescriptions')
+const getIncomingsForMonth = require('./getIncomingsForMonth')
+const getIncomingsLastSixMonth = require('./getIncomingsLastSixMonth')
+const getSpendingsByCategoriesAndDescriptions = require('./getSpendingsByCategoriesAndDescriptions')
+const getSpendingsForMonth = require('./getSpendingsByCategoriesAndDescriptions')
+const getSpendingsLastSixMonth = require('./getSpendingsLastSixMonth')
 
 module.exports = {
-  lastSixMonth,
-  spendingTypesSummary,
+  balanceGet,
+  balanceSet,
+  getIncomingsByCategoriesAndDescriptions,
+  getIncomingsForMonth,
+  getIncomingsLastSixMonth,
+  getSpendingsByCategoriesAndDescriptions,
+  getSpendingsForMonth,
+  getSpendingsLastSixMonth,
 }
