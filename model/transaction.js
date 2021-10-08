@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose')
 
+
 const transactionSchema = Schema(
   {
     desc: {
@@ -36,6 +37,7 @@ const transactionSchema = Schema(
   },
   { versionKey: false, timestamps: true }
 )
+
 
 const Transaction = model('transaction', transactionSchema)
 

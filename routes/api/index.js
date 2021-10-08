@@ -6,4 +6,10 @@ module.exports = {
   transactions,
   users,
   reportsRouter,
+
+const authRouter = require('./auth')
+
+module.exports = {
+  transactions,
+  authRouter,
 }

@@ -10,6 +10,7 @@ router.post(
   validationCreateTransaction,
   controllerWrapper(ctrl.addTransaction)
 )
+router.post('/', validationCreateTransaction, controllerWrapper(ctrl.addTransaction))
 router.delete('/:transactionId', controllerWrapper(ctrl.delTransaction))
 
 module.exports = router

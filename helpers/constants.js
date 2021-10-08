@@ -10,13 +10,11 @@ const HttpCode = {
   INTERNAL_SERVER_ERROR: 500
 }
 
-
 const status = {
   ERROR: 'error',
   SUCCESS: 'success',
-  FAIL: 'fail',
+  FAIL: 'fail'
 }
-
 
 module.exports = {
   HttpCode,

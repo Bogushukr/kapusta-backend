@@ -1,4 +1,5 @@
-// const userController = require('./users')
+const auth = require('./auth')
 
-
-// module.exports = { userController, cash }
+module.exports = {
+  auth,
+}
