@@ -5,6 +5,11 @@ const { controllerWrapper } = require('./../../middlewares')
 const ctrl = require('./../../controller/transactions')
 
 router.get('/', controllerWrapper(ctrl.getAll))
+router.post(
+  '/',
+  validationCreateTransaction,
+  controllerWrapper(ctrl.addTransaction)
+)
 router.post('/', validationCreateTransaction, controllerWrapper(ctrl.addTransaction))
 router.delete('/:transactionId', controllerWrapper(ctrl.delTransaction))
 
