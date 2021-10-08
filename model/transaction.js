@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
 
 const transactionSchema = Schema(
   {
@@ -15,28 +15,28 @@ const transactionSchema = Schema(
     },
     expenseCategories: {
       type: String,
-      default: "null",
+      default: 'null',
     },
     incomeCategories: {
       type: String,
-      default: "null",
+      default: 'null',
     },
     year: {
       type: String,
-      default: "",
+      default: '',
     },
     month: {
       type: String,
-      default: "",
+      default: '',
     },
     day: {
       type: String,
-      default: "",
+      default: '',
     },
   },
-  { versionKey: false, timeStamps: true }
-);
+  { versionKey: false, timestamps: true }
+)
 
-const Transaction = model("transaction", transactionSchema);
+const Transaction = model('transaction', transactionSchema)
 
-module.exports = Transaction;
+module.exports = Transaction

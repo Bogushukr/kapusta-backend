@@ -1,9 +1,9 @@
 const transactions = require('./transactions')
 const users = require('./users')
-const reports = require('./reports')
+const reportRouter = require('./reports')
 
 module.exports = {
   transactions,
   users,
-  reports,
+  reportsRouter,
 }
