@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { User } = require('../../model')
+const { User } = require('../../model/')
 const { HttpCode, status } = require('../../helpers/constants')
 
 const reg = async (req, res) => {
