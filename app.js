@@ -21,12 +21,8 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-// app.use('/api/transactions', transactionsRouter)
 app.use('/api/transactions', transactionsRouter)
-// app.use('/api/users', usersRouter)
-app.use('/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/api/users', authRouter)
 
 
