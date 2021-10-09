@@ -33,7 +33,10 @@ router.get(
 
 // ===== Cash-In reports
 // GET Cash-In report for Month
-router.get('/cash-in/:year/month', controllerWrapper(ctrl.getIncomingsForMonth))
+router.get(
+  '/cash-in/:year/:month',
+  controllerWrapper(ctrl.getIncomingsForMonth)
+)
 
 // GET Cash-In report for last six month
 router.get(
