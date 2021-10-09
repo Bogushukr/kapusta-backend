@@ -6,6 +6,6 @@ const ctrl = require('./../../controller/transactions')
 
 router.get('/', controllerWrapper(authenticate), controllerWrapper(ctrl.getAll))
 router.post('/', controllerWrapper(authenticate), validationCreateTransaction, controllerWrapper(ctrl.addTransaction))
-router.delete('/:transactionId', controllerWrapper(ctrl.delTransaction))
+router.delete('/:transactionId', controllerWrapper(authenticate), controllerWrapper(ctrl.delTransaction))
 
 module.exports = router
