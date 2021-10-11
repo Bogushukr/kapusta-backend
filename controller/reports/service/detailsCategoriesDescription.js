@@ -1,4 +1,4 @@
-const { Transaction } = require('../../model')
+const { Transaction } = require('../../../model')
 
 const getDetails = async (isIncoming, year, month) => {
   const pipeline = [
