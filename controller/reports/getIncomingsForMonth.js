@@ -1,5 +1,6 @@
 const { HttpCode } = require('../../helpers/constants')
-const forMonth = require('./forMonth')
+const forMonth = require('./service/forMonth')
+const detailsCategoriesDescription = require('./service/detailsCategoriesDescription')
 
 const getIncomingsForMonth = async (req, res) => {
   const { year, month } = req.params
@@ -10,11 +11,18 @@ const getIncomingsForMonth = async (req, res) => {
     month
   )
 
+  const result = await detailsCategoriesDescription(true, year, month)
+
   res.status(HttpCode.OK).json({
     status: 'success',
     code: 200,
-    data: { transactionListMonth, cashOutMonth, cashInMonth },
-    message: `Spending summary report for ${month} ${year} has been successufully prepared`,
+    data: {
+      transactionListMonth,
+      cashOutMonth,
+      cashInMonth,
+      details: result
+    },
+    message: `Incoming summary report for ${month}-${year} has been successufully prepared`
   })
 }
 
