@@ -62,10 +62,6 @@ const forMonth = async (isIncoming, year, month) => {
   const cashOutMonth = result[0].totalCashOut[0].total
   const cashInMonth = result[0].totalCashIn[0].total
 
-  // console.log(result[0].list)
-  // console.log(result[0].totalCashOut)
-  // console.log(result[0].totalCashIn)
-
   return { transactionListMonth, cashOutMonth, cashInMonth }
 }
 
