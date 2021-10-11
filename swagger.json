@@ -1,4 +1,5 @@
 {
+  "openapi": "3.0.1",
   "info": {
     "version": "1.0.0",
     "title": "Kapusta API",
@@ -10,7 +11,6 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "openapi": "3.0.1",
   "servers": [{ "url": "http://localhost:3001" }],
   "tags": [
     {
@@ -20,9 +20,155 @@
     {
       "name": "Transaction",
       "description": "Transaction endpoints"
+    },
+    {
+      "name": "Reports",
+      "description": "Detailed information and reports"
     }
   ],
   "paths": {
+    "/api/users/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "Auth body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exist",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Provided email not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful logout",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Current",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Current User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/balance": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Balance",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "User's balance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
     "/api/transactions": {
       "get": {
         "tags": ["Transaction"],
@@ -49,7 +195,7 @@
   },
   "components": {
     "schemas": {
-      "TransactionRequest": {
+      "RegistrationRequest": {
         "type": "object",
         "required": ["email", "password"],
         "properties": {
@@ -62,6 +208,61 @@
             "type": "string",
             "description": "Users password",
             "example": "qwerty123"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "user token",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "user token",
+            "example": "wqwerqdRQFQDSF123KJNL123DAsad212wqwerqdRQFQDSF123KJNL123DAsad212wqwerqdRQFQDSF123KJNL123DAsad212"
+          }
+        }
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "user token",
+            "format": "email"
+          },
+          "balance": {
+            "type": "integer",
+            "description": "balance",
+            "example": 99999
+          }
+        }
+      },
+      "BalanceResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "balance": {
+                "type": "integer",
+                "description": "balance",
+                "example": 99999
+              }
+            }
           }
         }
       },
@@ -112,13 +313,13 @@
           }
         }
       }
-    }
-  },
-  "securitySchemes": {
-    "Bearer": {
-      "type": "http",
-      "scheme": "bearer",
-      "bearerFormat": "JWT"
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
   }
 }
