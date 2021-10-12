@@ -18,45 +18,45 @@ const getSpendingsLastSixMonth = async (_, res) => {
         cashIncome: 1,
         myNewDate: {
           $toDate: {
-            $concat: ['$year', '-', '$month', '-', '$day'],
-          },
-        },
-      },
+            $concat: ['$year', '-', '$month', '-', '$day']
+          }
+        }
+      }
     },
     {
       $match: {
         myNewDate: {
-          $lte: new Date('2021-10'),
-        },
+          $lte: new Date('2021-10')
+        }
         // myNewDate: {
         //   $gte: new Date('2021-05'),
         // },
-      },
+      }
     },
     {
       $group: {
         _id: {
           month: {
-            $month: '$myNewDate',
+            $month: '$myNewDate'
           },
           year: {
-            $year: '$myNewDate',
-          },
+            $year: '$myNewDate'
+          }
         },
         Total: {
-          $sum: '$value',
-        },
-      },
+          $sum: '$value'
+        }
+      }
     },
     {
       $sort: {
         '_id.year': -1,
-        '_id.month': -1,
-      },
+        '_id.month': -1
+      }
     },
     {
-      $limit: 6,
-    },
+      $limit: 6
+    }
   ]
 
   const result = await Transaction.aggregate(pipeline)
@@ -65,9 +65,9 @@ const getSpendingsLastSixMonth = async (_, res) => {
     status: 'success',
     code: 200,
     data: {
-      result: result,
+      result: result
     },
-    message: 'Last six month spendings report has been successufully prepared',
+    message: 'Last six month spendings report has been successufully prepared'
   })
 }
 

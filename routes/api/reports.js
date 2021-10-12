@@ -11,7 +11,7 @@ router.get('/balance', controllerWrapper(ctrl.balanceGet))
 
 
 // ===== Cash-Out reports =====
-// GET Cash-Out report for Month
+// GET Cash-Out report for Month. Returns summary report by categories and description
 router.get(
   '/cash-out/:year/:month',
   controllerWrapper(ctrl.getSpendingsForMonth)
@@ -23,14 +23,8 @@ router.get(
   controllerWrapper(ctrl.getSpendingsLastSixMonth)
 )
 
-// GET Cash-Out summary report for categories and descriptions
-router.get(
-  '/cash-out/summary-report',
-  controllerWrapper(ctrl.getSpendingsByCategoriesAndDescriptions)
-)
-
 // ===== Cash-In reports
-// GET Cash-In report for Month
+// GET Cash-In report for Month. Returns summary report by categories and description
 router.get(
   '/cash-in/:year/:month',
   controllerWrapper(ctrl.getIncomingsForMonth)
@@ -40,12 +34,6 @@ router.get(
 router.get(
   '/cash-in/last-six-month',
   controllerWrapper(ctrl.getIncomingsLastSixMonth)
-)
-
-// GET Cash-In summary report for categories and descriptions
-router.get(
-  '/cash-in/summary-report',
-  controllerWrapper(ctrl.getIncomingsByCategoriesAndDescriptions)
 )
 
 module.exports = router
