@@ -11,6 +11,6 @@ router.post('/signup', validationSignUpSignIn, controllerWrapper(ctrl.reg))
 router.post('/login', validationSignUpSignIn, controllerWrapper(ctrl.login))
 router.get('/logout', controllerWrapper(authenticate), controllerWrapper(ctrl.logout))
 router.get('/current', controllerWrapper(authenticate), controllerWrapper(ctrl.current))
-router.get('/balance', controllerWrapper(authenticate), controllerWrapper(ctrl.balance))
+router.patch('/setBalance', controllerWrapper(authenticate), controllerWrapper(ctrl.balanceSet))
 
 module.exports = router

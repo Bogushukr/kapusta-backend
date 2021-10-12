@@ -18,6 +18,7 @@ const schemaCreateTransaction = Joi.object({
 })
 
 const schemaSignUpSignIn = Joi.object({
+  name: Joi.string().max(30).optional(),
   password: Joi.string().min(6).required(),
   email: Joi.string().pattern(emailRegexp).required()
 })
