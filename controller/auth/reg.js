@@ -3,7 +3,7 @@ const { User } = require('../../model/')
 const { HttpCode, status } = require('../../helpers/constants')
 
 const reg = async (req, res) => {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
   const user = await User.findOne({ email })
   if (user) {
     return res.status(HttpCode.CONFLICT).json({
@@ -13,7 +13,7 @@ const reg = async (req, res) => {
     })
   }
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-  await User.create({ email, password: hashPassword })
+  await User.create({ name, email, password: hashPassword })
   res.status(HttpCode.CREATED).json({
     status: status.SUCCESS,
     code: 201,

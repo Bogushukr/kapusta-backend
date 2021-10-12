@@ -9,8 +9,6 @@ const ctrl = require('./../../controller/reports')
 // GET Balance
 router.get('/balance', controllerWrapper(ctrl.balanceGet))
 
-// POST Balance (once when application initialized dy user)
-router.post('/balance', controllerWrapper(ctrl.balanceSet))
 
 // ===== Cash-Out reports =====
 // GET Cash-Out report for Month

@@ -5,6 +5,11 @@ const emailRegexp =
 
 const userSchema = Schema(
     {
+        name: {
+            type: String,
+            required: [true, 'Name is required'],
+            maxLength: 30
+        },
         email: {
             type: String,
             required: [true, 'Email is required'],
