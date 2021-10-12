@@ -12,27 +12,27 @@ const balanceGet = async (_, res) => {
     data: {
       cashOutBalance: cashOutBalance[0].total,
       cashInBalance: cashInBalance[0].total,
-      balance: balance,
+      balance: balance
     },
-    message: `Total Balance: ${cashInBalance} - ${cashOutBalance} = ${balance}`,
+    message: `Total Balance: ${cashInBalance} - ${cashOutBalance} = ${balance}`
   })
 }
 
-async function getCashState(isIncoming) {
+const getCashState = async (isIncoming) => {
   const pipeline = [
     {
       $match: {
-        cashIncome: isIncoming,
-      },
+        cashIncome: isIncoming
+      }
     },
     {
       $group: {
         _id: 'Cash',
         total: {
-          $sum: '$value',
-        },
-      },
-    },
+          $sum: '$value'
+        }
+      }
+    }
   ]
 
   const result = await Transaction.aggregate(pipeline)

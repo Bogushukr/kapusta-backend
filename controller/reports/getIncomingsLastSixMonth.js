@@ -5,25 +5,25 @@ const getIncomingsLastSixMonth = async (_, res) => {
   const pipeline = [
     {
       $match: {
-        cashIncome: true,
-      },
+        cashIncome: true
+      }
     },
     {
       $group: {
         _id: '$month',
         totalSum: {
-          $sum: '$value',
-        },
-      },
+          $sum: '$value'
+        }
+      }
     },
     {
       $sort: {
-        _id: -1,
-      },
+        _id: -1
+      }
     },
     {
-      $limit: 6,
-    },
+      $limit: 6
+    }
   ]
 
   const result = await Transaction.aggregate(pipeline)
@@ -36,9 +36,9 @@ const getIncomingsLastSixMonth = async (_, res) => {
     status: 'success',
     code: 200,
     data: {
-      result: result,
+      result: result
     },
-    message: 'Last six month spendings report has been successufully prepared',
+    message: 'Last six month spendings report has been successufully prepared'
   })
 }
 
