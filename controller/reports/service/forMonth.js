@@ -1,6 +1,11 @@
 const { Transaction } = require('../../../model')
 
 const forMonth = async (isIncoming, year, month) => {
+  // const requestedDate = new Date(`${year}-${month}`)
+  const requestedDate = `${year}-${month}`
+
+  console.log(requestedDate)
+
   const pipeline = [
     {
       $facet: {
@@ -22,8 +27,8 @@ const forMonth = async (isIncoming, year, month) => {
           {
             $match: {
               cashIncome: false,
-              year: '2021',
-              month: '09'
+              year: `${year}`,
+              month: `${month}`
             }
           },
           {
@@ -39,8 +44,8 @@ const forMonth = async (isIncoming, year, month) => {
           {
             $match: {
               cashIncome: true,
-              year: '2021',
-              month: '09'
+              year: `${year}`,
+              month: `${month}`
             }
           },
           {

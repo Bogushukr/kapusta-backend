@@ -1,32 +1,8 @@
-const { Transaction } = require('../../model')
 const { HttpCode } = require('../../helpers/constants')
+const lastSixMonth = require('./service/lastSixMonth')
 
 const getIncomingsLastSixMonth = async (_, res) => {
-  const pipeline = [
-    {
-      $match: {
-        cashIncome: true
-      }
-    },
-    {
-      $group: {
-        _id: '$month',
-        totalSum: {
-          $sum: '$value'
-        }
-      }
-    },
-    {
-      $sort: {
-        _id: -1
-      }
-    },
-    {
-      $limit: 6
-    }
-  ]
-
-  const result = await Transaction.aggregate(pipeline)
+  const result = await lastSixMonth(true)
 
   if (!result) {
     res.status(HttpCode.NO_CONTENT)
@@ -38,7 +14,7 @@ const getIncomingsLastSixMonth = async (_, res) => {
     data: {
       result: result
     },
-    message: 'Last six month spendings report has been successufully prepared'
+    message: 'Last six month incomings report has been successufully prepared'
   })
 }
 
