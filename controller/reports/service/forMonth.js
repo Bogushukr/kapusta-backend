@@ -1,10 +1,7 @@
 const { Transaction } = require('../../../model')
 
-const forMonth = async (isIncoming, year, month) => {
-  // const requestedDate = new Date(`${year}-${month}`)
-  const requestedDate = `${year}-${month}`
-
-  console.log(requestedDate)
+const forMonth = async (isIncoming, year, month, owner) => {
+  // const requestedDate = `${year}-${month}`
 
   const pipeline = [
     {
@@ -12,6 +9,7 @@ const forMonth = async (isIncoming, year, month) => {
         list: [
           {
             $match: {
+              owner: new ObjectId(`${owner}`), // eslint-disable-line
               cashIncome: isIncoming,
               year: `${year}`,
               month: `${month}`
@@ -26,6 +24,7 @@ const forMonth = async (isIncoming, year, month) => {
         totalCashOut: [
           {
             $match: {
+              owner: new ObjectId(`${owner}`), // eslint-disable-line
               cashIncome: false,
               year: `${year}`,
               month: `${month}`
@@ -43,6 +42,7 @@ const forMonth = async (isIncoming, year, month) => {
         totalCashIn: [
           {
             $match: {
+              owner: new ObjectId(`${owner}`), // eslint-disable-line
               cashIncome: true,
               year: `${year}`,
               month: `${month}`

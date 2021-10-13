@@ -1,8 +1,10 @@
 const { HttpCode } = require('../../helpers/constants')
 const lastSixMonth = require('./service/lastSixMonth')
 
-const getSpendingsLastSixMonth = async (_, res) => {
-  const result = await lastSixMonth(false)
+const getSpendingsLastSixMonth = async (req, res) => {
+  const owner = req.user._id
+
+  const result = await lastSixMonth(false, owner)
 
   if (!result) {
     res.status(HttpCode.NO_CONTENT)

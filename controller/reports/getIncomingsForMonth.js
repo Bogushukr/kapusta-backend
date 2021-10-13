@@ -4,14 +4,16 @@ const detailsCategoriesDescription = require('./service/detailsCategoriesDescrip
 
 const getIncomingsForMonth = async (req, res) => {
   const { year, month } = req.params
+  const owner = req.user._id
 
   const { transactionListMonth, cashOutMonth, cashInMonth } = await forMonth(
     true,
     year,
-    month
+    month,
+    owner
   )
 
-  const result = await detailsCategoriesDescription(true, year, month)
+  const result = await detailsCategoriesDescription(true, year, month, owner)
 
   res.status(HttpCode.OK).json({
     status: 'success',

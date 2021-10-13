@@ -1,6 +1,6 @@
 const { Transaction } = require('../../../model')
 
-const getDetails = async (isIncoming, year, month) => {
+const getDetails = async (isIncoming, year, month, owner) => {
   const pipeline = [
     {
       $facet: {
@@ -9,7 +9,8 @@ const getDetails = async (isIncoming, year, month) => {
             $match: {
               year: `${year}`,
               month: `${month}`,
-              cashIncome: isIncoming
+              cashIncome: isIncoming,
+              owner: new ObjectId(`${owner}`) // eslint-disable-line
             }
           },
           {
