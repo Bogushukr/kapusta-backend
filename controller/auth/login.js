@@ -10,26 +10,32 @@ const login = async (req, res) => {
     return res.status(HttpCode.BAD_REQUEST).json({
       status: status.FAIL,
       code: HttpCode.BAD_REQUEST,
-      message: 'Wrong Email',
+      message: 'Wrong Email'
     })
   }
-  const hashPassword = user.password;
+  const hashPassword = user.password
   const compareResult = bcrypt.compareSync(password, hashPassword)
   if (!compareResult) {
     return res.status(HttpCode.BAD_REQUEST).json({
       status: status.FAIL,
       code: HttpCode.BAD_REQUEST,
-      message: 'Wrong Password',
+      message: 'Wrong Password'
     })
   }
 
   const payload = {
-    id: user._id,
+    id: user._id
   }
   const { JWT_KEY } = process.env
   const token = jwt.sign(payload, JWT_KEY)
   await User.findByIdAndUpdate(user._id, { token })
-  res.json({ token })
+  res.json({
+    user: {
+      name: user.name,
+      email: user.email
+    },
+    token
+  })
 }
 
 module.exports = login
