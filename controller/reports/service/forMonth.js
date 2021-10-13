@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const { Transaction } = require('../../../model')
 
 const forMonth = async (isIncoming, year, month, owner) => {
@@ -9,7 +10,7 @@ const forMonth = async (isIncoming, year, month, owner) => {
         list: [
           {
             $match: {
-              owner: new ObjectId(`${owner}`), // eslint-disable-line
+              owner: new ObjectId(`${owner}`),
               cashIncome: isIncoming,
               year: `${year}`,
               month: `${month}`
@@ -24,7 +25,7 @@ const forMonth = async (isIncoming, year, month, owner) => {
         totalCashOut: [
           {
             $match: {
-              owner: new ObjectId(`${owner}`), // eslint-disable-line
+              owner: new ObjectId(`${owner}`),
               cashIncome: false,
               year: `${year}`,
               month: `${month}`
@@ -42,7 +43,7 @@ const forMonth = async (isIncoming, year, month, owner) => {
         totalCashIn: [
           {
             $match: {
-              owner: new ObjectId(`${owner}`), // eslint-disable-line
+              owner: new ObjectId(`${owner}`),
               cashIncome: true,
               year: `${year}`,
               month: `${month}`

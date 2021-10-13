@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const { Transaction } = require('../../../model')
 
 const getCashState = async (isIncoming, owner) => {
@@ -5,7 +6,7 @@ const getCashState = async (isIncoming, owner) => {
     {
       $match: {
         cashIncome: isIncoming,
-        owner: new ObjectId(`${owner}`) // eslint-disable-line
+        owner: new ObjectId(`${owner}`)
       }
     },
     {

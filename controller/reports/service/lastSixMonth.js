@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const { Transaction } = require('../../../model')
 
 const lastSixMonth = async (isIncoming, owner) => {
@@ -27,7 +28,7 @@ const lastSixMonth = async (isIncoming, owner) => {
           $lte: new Date(`${curYear}-${curMonth}`)
         },
         cashIncome: isIncoming,
-        owner: new ObjectId(`${owner}`) // eslint-disable-line
+        owner: new ObjectId(`${owner}`)
       }
     },
     {
