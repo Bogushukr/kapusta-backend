@@ -1,6 +1,6 @@
 const { Transaction } = require('../../../model')
 
-const lastSixMonth = async (isIncoming) => {
+const lastSixMonth = async (isIncoming, owner) => {
   const today = new Date()
   const curYear = today.getFullYear().toString()
   const curMonth = (today.getMonth() + 1).toString()
@@ -12,6 +12,7 @@ const lastSixMonth = async (isIncoming) => {
         month: 1,
         day: 1,
         value: 1,
+        owner: 1,
         cashIncome: 1,
         myNewDate: {
           $toDate: {
@@ -25,7 +26,8 @@ const lastSixMonth = async (isIncoming) => {
         myNewDate: {
           $lte: new Date(`${curYear}-${curMonth}`)
         },
-        cashIncome: isIncoming
+        cashIncome: isIncoming,
+        owner: new ObjectId(`${owner}`) // eslint-disable-line
       }
     },
     {
