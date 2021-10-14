@@ -2,6 +2,8 @@ const Joi = require('joi')
 const { HttpCode } = require('../helpers/constants')
 const emailRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
+
+
 const schemaCreateTransaction = Joi.object({
   desc: Joi.string()
       .max(30)
@@ -12,9 +14,9 @@ const schemaCreateTransaction = Joi.object({
   cashIncome: Joi.boolean().required(),
   expenseCategories: Joi.string().default('null').required(),
   incomeCategories: Joi.string().default('null').required(),
-  year: Joi.number().required(),
-  month: Joi.number().required(),
-  day: Joi.number().required()
+  year: Joi.string().required(),
+  month: Joi.string().required(),
+  day: Joi.string().required()
 })
 
 const schemaSignUpSignIn = Joi.object({
