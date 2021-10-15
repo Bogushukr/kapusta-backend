@@ -6,7 +6,7 @@ const getSpendingsForMonth = async (req, res) => {
   const { year, month } = req.params
   const owner = req.user._id
 
-  const { transactionListMonth, cashOutMonth, cashInMonth } = await forMonth(
+  const { transactionsListMonth, cashOutMonth, cashInMonth } = await forMonth(
     false,
     year,
     month,
@@ -19,7 +19,7 @@ const getSpendingsForMonth = async (req, res) => {
     status: 'success',
     code: 200,
     data: {
-      transactionListMonth,
+      transactionsListMonth,
       cashOutMonth,
       cashInMonth,
       details: result
