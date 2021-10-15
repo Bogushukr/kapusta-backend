@@ -1,13 +1,17 @@
 const { HttpCode } = require('../../helpers/constants')
 const getCashState = require('./service/getCashState')
+const { User } = require('../../model')
 
 const balanceGet = async (req, res) => {
   const owner = req.user._id
 
   const cashInBalance = (await getCashState(true, owner)) || 0
   const cashOutBalance = (await getCashState(false, owner)) || 0
+  const currentUser = await User.find({ _id: owner })
 
-  const balance = cashInBalance - cashOutBalance
+  const { currentBalance } = currentUser[0]
+
+  const balance = currentBalance + cashInBalance - cashOutBalance
 
   res.status(HttpCode.OK).json({
     status: 'success',
@@ -17,7 +21,7 @@ const balanceGet = async (req, res) => {
       cashInBalance: cashInBalance,
       balance: balance
     },
-    message: `Total Balance: ${cashInBalance} - ${cashOutBalance} = ${balance}`
+    message: `Total Balance: ${currentBalance} + ${cashInBalance} - ${cashOutBalance} = ${balance}`
   })
 }
 
