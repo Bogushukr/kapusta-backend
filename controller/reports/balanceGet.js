@@ -4,8 +4,9 @@ const getCashState = require('./service/getCashState')
 const balanceGet = async (req, res) => {
   const owner = req.user._id
 
-  const cashOutBalance = await getCashState(false, owner)
-  const cashInBalance = await getCashState(true, owner)
+  const cashInBalance = (await getCashState(true, owner)) || 0
+  const cashOutBalance = (await getCashState(false, owner)) || 0
+
   const balance = cashInBalance - cashOutBalance
 
   res.status(HttpCode.OK).json({
