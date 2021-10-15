@@ -1,18 +1,20 @@
 const { HttpCode } = require('../../helpers/constants')
 const { Transaction, User } = require('../../model')
 
+const lengthChecker = (month) => {
+  const str = month.split('')
+  if (str.length === 1) {
+    return `0${month}`
+  }
+  return month
+}
+
 const add = async (req, res, _) => {
   const id = req.user._id
   const currentBalance = req.user.currentBalance
-  const newTransaction = { ...req.body, owner: id}
+  const newTransaction = { ...req.body, owner: id, month: lengthChecker(req.body.month), day: lengthChecker(req.body.day) }
 
-  // const lengthCounter = (month) => {
-  //   const str = month.split('')
-  //   if (str.length === 1) {
-  //     return `0${month}`
-  //   }
-  //   return month
-  // }
+
 
   const transaction = await Transaction.create(newTransaction)
 
