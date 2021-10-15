@@ -1,15 +1,12 @@
 const { HttpCode } = require('../../helpers/constants')
 const getCashState = require('./service/getCashState')
-const { User } = require('../../model')
 
 const balanceGet = async (req, res) => {
   const owner = req.user._id
+  const currentBalance = req.user.currentBalance
 
   const cashInBalance = (await getCashState(true, owner)) || 0
   const cashOutBalance = (await getCashState(false, owner)) || 0
-  const currentUser = await User.find({ _id: owner })
-
-  const { currentBalance } = currentUser[0]
 
   const balance = currentBalance + cashInBalance - cashOutBalance
 
