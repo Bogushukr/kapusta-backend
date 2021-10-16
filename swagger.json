@@ -319,10 +319,16 @@
     },
     "/api/reports/balance/": {
       "get": {
-        "tags": ["Reports"],
+        "tags": [
+          "Reports"
+        ],
         "summary": "Get balance by parts",
         "parameters": [],
-        "security": [{"Bearer": [] } ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -343,7 +349,9 @@
     },
     "/api/reports/cash-out/": {
       "get": {
-        "tags": ["Reports"],
+        "tags": [
+          "Reports"
+        ],
         "summary": "Get expense report for month",
         "parameters": [
           {
@@ -367,7 +375,11 @@
             "description": "month"
           }
         ],
-        "security": [{"Bearer": [] } ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -386,181 +398,236 @@
         }
       }
     },
-    "/api/reports/cash-out/last-six-month/": {},
-    "/api/reports/cash-in/": {},
-    "/api/reports/cash-in/last-six-month/": {}
-  },
-    "components": {
-      "schemas": {
-        "RegistrationRequest": {
-          "type": "object",
-          "required": [
-            "name",
-            "email",
-            "password"
-          ],
-          "properties": {
-            "name": {
+    "/api/reports/cash-in/": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get income report for month",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "year",
+            "schema": {
               "type": "string",
-              "description": "User's name",
-              "example": "John"
+              "example": "2020"
             },
-            "email": {
+            "required": true,
+            "description": "year"
+          },
+          {
+            "in": "path",
+            "name": "month",
+            "schema": {
               "type": "string",
-              "description": "User's email",
-              "format": "email"
+              "example": "09"
             },
-            "password": {
-              "type": "string",
-              "description": "User's password",
-              "example": "qwerty123"
-            }
+            "required": true,
+            "description": "month"
           }
-        },
-        "RegistrationResponse": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "user name",
-              "example": "John"
-            },
-            "email": {
-              "type": "string",
-              "description": "user's email",
-              "format": "email"
-            },
-            "password": {
-              "type": "string",
-              "description": "password",
-              "example": "qwerty123"
-            }
+        ],
+        "security": [
+          {
+            "Bearer": []
           }
-        },
-        "LoginResponse": {
-          "type": "object",
-          "properties": {
-            "token": {
-              "type": "string",
-              "description": "user token",
-              "example": "wqwerqdRQFQDSF123KJNL123DAsad212wqwerqdRQFQDSF123KJNL123DAsad212wqwerqdRQFQDSF123KJNL123DAsad212"
-            }
-          }
-        },
-        "CurrentResponse": {
-          "type": "object",
-          "properties": {
-            "email": {
-              "type": "string",
-              "description": "user token",
-              "format": "email"
-            },
-            "balance": {
-              "type": "integer",
-              "description": "balance",
-              "example": 99999
-            }
-          }
-        },
-        "SetBalanceRequest": {
-          "type": "object",
-          "properties": {
-            "currentBalance": {
-              "type": "integer",
-              "description": "new balance",
-              "example": 99999
-            }
-          }
-        },
-        "SetBalanceResponse": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "type": "object",
-              "properties": {
-                "currentBalance": {
-                  "type": "integer",
-                  "description": "balance",
-                  "example": 99999
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CashResponse"
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
           }
-        },
-        "TransactionResponse": {
-          "type": "array",
-          "items": {
+        }
+      }
+    },
+    "/api/reports/cash-out/last-six-month/": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get expense report for last 6 months",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LastSixMonthsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/reports/cash-in/last-six-month/": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get income report for last 6 months",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LastSixMonthsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "user name",
+            "example": "John"
+          },
+          "email": {
+            "type": "string",
+            "description": "user's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "user token",
+            "example": "wqwerqdRQFQDSF123KJNL123DAsad212wqwerqdRQFQDSF123KJNL123DAsad212wqwerqdRQFQDSF123KJNL123DAsad212"
+          }
+        }
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "user token",
+            "format": "email"
+          },
+          "balance": {
+            "type": "integer",
+            "description": "balance",
+            "example": 99999
+          }
+        }
+      },
+      "SetBalanceRequest": {
+        "type": "object",
+        "properties": {
+          "currentBalance": {
+            "type": "integer",
+            "description": "new balance",
+            "example": 99999
+          }
+        }
+      },
+      "SetBalanceResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
             "type": "object",
             "properties": {
-              "desc": {
-                "type": "string",
-                "description": "Transaction description",
-                "example": "one litre of milk"
-              },
-              "value": {
+              "currentBalance": {
                 "type": "integer",
-                "description": "value of transaction",
-                "example": 10000
-              },
-              "cashIncome": {
-                "type": "boolean",
-                "description": false
-              },
-              "expenseCategories": {
-                "type": "string",
-                "description": "expense category",
-                "example": "food"
-              },
-              "incomeCategories": {
-                "type": "string",
-                "description": "income category",
-                "example": "salary"
-              },
-              "year": {
-                "type": "string",
-                "description": "transaction year",
-                "example": "2020"
-              },
-              "month": {
-                "type": "string",
-                "description": "transaction month",
-                "example": "8"
-              },
-              "day": {
-                "type": "string",
-                "description": "transaction day",
-                "example": "7"
+                "description": "balance",
+                "example": 99999
               }
             }
           }
-        },
-        "AddTransactionRequest": {
+        }
+      },
+      "TransactionResponse": {
+        "type": "array",
+        "items": {
           "type": "object",
-          "required": [
-            "value",
-            "year",
-            "month",
-            "day"
-          ],
           "properties": {
             "desc": {
               "type": "string",
               "description": "Transaction description",
-              "example": "my salary"
+              "example": "one litre of milk"
             },
             "value": {
               "type": "integer",
               "description": "value of transaction",
-              "example": 45000
+              "example": 10000
             },
             "cashIncome": {
               "type": "boolean",
-              "description": true
+              "description": false
             },
             "expenseCategories": {
               "type": "string",
               "description": "expense category",
-              "example": "null"
+              "example": "food"
             },
             "incomeCategories": {
               "type": "string",
@@ -575,7 +642,7 @@
             "month": {
               "type": "string",
               "description": "transaction month",
-              "example": "9"
+              "example": "8"
             },
             "day": {
               "type": "string",
@@ -583,132 +650,187 @@
               "example": "7"
             }
           }
-        },
-        "AddTransactionResponse": {
-          "type": "object",
-          "properties": {
-            "desc": {
-              "type": "string",
-              "description": "Transaction description",
-              "example": "my salary"
-            },
-            "value": {
-              "type": "integer",
-              "description": "value of transaction",
-              "example": 45000
-            },
-            "cashIncome": {
-              "type": "boolean",
-              "description": true
-            },
-            "expenseCategories": {
-              "type": "string",
-              "description": "expense category",
-              "example": "null"
-            },
-            "incomeCategories": {
-              "type": "string",
-              "description": "income category",
-              "example": "salary"
-            },
-            "year": {
-              "type": "string",
-              "description": "transaction year",
-              "example": "2020"
-            },
-            "month": {
-              "type": "string",
-              "description": "transaction month",
-              "example": "9"
-            },
-            "day": {
-              "type": "string",
-              "description": "transaction day",
-              "example": "7"
-            }
+        }
+      },
+      "AddTransactionRequest": {
+        "type": "object",
+        "required": [
+          "value",
+          "year",
+          "month",
+          "day"
+        ],
+        "properties": {
+          "desc": {
+            "type": "string",
+            "description": "Transaction description",
+            "example": "my salary"
+          },
+          "value": {
+            "type": "integer",
+            "description": "value of transaction",
+            "example": 45000
+          },
+          "cashIncome": {
+            "type": "boolean",
+            "description": true
+          },
+          "expenseCategories": {
+            "type": "string",
+            "description": "expense category",
+            "example": "null"
+          },
+          "incomeCategories": {
+            "type": "string",
+            "description": "income category",
+            "example": "salary"
+          },
+          "year": {
+            "type": "string",
+            "description": "transaction year",
+            "example": "2020"
+          },
+          "month": {
+            "type": "string",
+            "description": "transaction month",
+            "example": "9"
+          },
+          "day": {
+            "type": "string",
+            "description": "transaction day",
+            "example": "7"
           }
-        },
-        "ReportsBalanceResponse": {
-          "type": "object",
-          "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "cashOutBalance": {
-                    "type": "integer",
-                    "description": "expense values",
-                    "example": 1000
-                  },
-                  "cashInBalance": {
-                    "type": "integer",
-                    "description": "cash in values",
-                    "example": 1000
-                  },
-                  "balance": {
-                    "type": "integer",
-                    "description": "full balance",
-                    "example": 2000
-                  }
-                }
+        }
+      },
+      "AddTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "desc": {
+            "type": "string",
+            "description": "Transaction description",
+            "example": "my salary"
+          },
+          "value": {
+            "type": "integer",
+            "description": "value of transaction",
+            "example": 45000
+          },
+          "cashIncome": {
+            "type": "boolean",
+            "description": true
+          },
+          "expenseCategories": {
+            "type": "string",
+            "description": "expense category",
+            "example": "null"
+          },
+          "incomeCategories": {
+            "type": "string",
+            "description": "income category",
+            "example": "salary"
+          },
+          "year": {
+            "type": "string",
+            "description": "transaction year",
+            "example": "2020"
+          },
+          "month": {
+            "type": "string",
+            "description": "transaction month",
+            "example": "9"
+          },
+          "day": {
+            "type": "string",
+            "description": "transaction day",
+            "example": "7"
+          }
+        }
+      },
+      "ReportsBalanceResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "cashOutBalance": {
+                "type": "integer",
+                "description": "expense values",
+                "example": 1000
+              },
+              "cashInBalance": {
+                "type": "integer",
+                "description": "cash in values",
+                "example": 1000
+              },
+              "balance": {
+                "type": "integer",
+                "description": "full balance",
+                "example": 2000
               }
+            }
           }
-        },
-        "CashOutResponse": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "type": "object",
-              "properties": {
-                "transactionListMonth": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "_id": {
-                        "type": "string",
-                        "description": "transaction id",
-                        "example": "14124123kjlkh123141234123"
-                      }
-                    }
-                  }
-                },
-                "cashOutMonth": {
-                  "type": "integer",
-                  "description": "expenses in month",
-                  "example": 1000
-                },
-                "cashInMonth": {
-                  "type": "integer",
-                  "description": "cash in month",
-                  "example": 1000
-                },
-                "details": {
+        }
+      },
+      "CashResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "transactionListMonth": {
+                "type": "array",
+                "items": {
                   "type": "object",
                   "properties": {
-                    "categoriesAndDescription": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string",
-                            "description": "id"
-                          },
-                          "totalByCategory": {
-                            "type": "integer",
-                            "description": "total value in category",
-                            "example": 10000
-                          },
-                          "desc": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "desc": {
-                                  "type": "string",
-                                  "description": "description",
-                                  "example": "food"
-                                }
+                    "_id": {
+                      "type": "string",
+                      "description": "transaction id",
+                      "example": "14124123kjlkh123141234123"
+                    }
+                  }
+                }
+              },
+              "cashOutMonth": {
+                "type": "integer",
+                "description": "expenses in month",
+                "example": 1000
+              },
+              "cashInMonth": {
+                "type": "integer",
+                "description": "cash in month",
+                "example": 1000
+              },
+              "details": {
+                "type": "object",
+                "properties": {
+                  "categoriesAndDescription": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "id"
+                        },
+                        "totalByCategory": {
+                          "type": "integer",
+                          "description": "total value in category",
+                          "example": 10000
+                        },
+                        "desc": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "desc": {
+                                "type": "string",
+                                "description": "description",
+                                "example": "food"
+                              },
+                              "desc": {
+                                "total": "string",
+                                "description": "total",
+                                "example": "total"
                               }
                             }
                           }
@@ -722,13 +844,47 @@
           }
         }
       },
-      "securitySchemes": {
-        "Bearer": {
-          "type": "http",
-          "scheme": "bearer",
-          "bearerFormat": "JWT"
+      "LastSixMonthsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "user id",
+                      "example": "14124123kjlkh123141234123"
+                    },
+                    "month": {
+                      "type": "string",
+                      "description": "month",
+                      "example": "09"
+                    },
+                    "year": {
+                      "type": "string",
+                      "description": "year",
+                      "example": "2021"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
+  }
 }
 
