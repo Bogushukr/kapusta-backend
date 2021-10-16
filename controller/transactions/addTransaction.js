@@ -16,9 +16,12 @@ const add = async (req, res, _) => {
 
 
 
+  const remainder = currentBalance - req.body.value < 0
+  const isIncoming = req.body.cashIncome
+
   const transaction = await Transaction.create(newTransaction)
 
-  if (currentBalance < req.body.value) {
+  if (!isIncoming && remainder) {
     return res.status(HttpCode.BAD_REQUEST).json({ message: 'No money, no funny' })
   }
   req.body.cashIncome
