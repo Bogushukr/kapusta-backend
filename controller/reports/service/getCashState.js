@@ -19,9 +19,13 @@ const getCashState = async (isIncoming, owner) => {
     }
   ]
 
-  const result = await Transaction.aggregate(pipeline)
+  const data = await Transaction.aggregate(pipeline)
 
-  return result[0].total
+  if (!data.length === 0) return 0
+
+  const total = data[0]?.total
+
+  return total
 }
 
 module.exports = getCashState
