@@ -8,8 +8,8 @@ const getDetails = async (isIncoming, year, month, owner) => {
         categoriesAndDescription: [
           {
             $match: {
-              year: `${year}`,
-              month: `${month}`,
+              year: year,
+              month: month,
               cashIncome: isIncoming,
               owner: new ObjectId(`${owner}`)
             }

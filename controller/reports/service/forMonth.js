@@ -2,8 +2,6 @@ const { ObjectId } = require('mongodb')
 const { Transaction } = require('../../../model')
 
 const forMonth = async (isIncoming, year, month, owner) => {
-  // const requestedDate = `${year}-${month}`
-
   const pipeline = [
     {
       $facet: {
@@ -12,8 +10,8 @@ const forMonth = async (isIncoming, year, month, owner) => {
             $match: {
               owner: new ObjectId(`${owner}`),
               cashIncome: isIncoming,
-              year: `${year}`,
-              month: `${month}`
+              year: year,
+              month: month
             }
           },
           {
@@ -27,8 +25,8 @@ const forMonth = async (isIncoming, year, month, owner) => {
             $match: {
               owner: new ObjectId(`${owner}`),
               cashIncome: false,
-              year: `${year}`,
-              month: `${month}`
+              year: year,
+              month: month
             }
           },
           {
@@ -45,8 +43,8 @@ const forMonth = async (isIncoming, year, month, owner) => {
             $match: {
               owner: new ObjectId(`${owner}`),
               cashIncome: true,
-              year: `${year}`,
-              month: `${month}`
+              year: year,
+              month: month
             }
           },
           {
@@ -64,11 +62,14 @@ const forMonth = async (isIncoming, year, month, owner) => {
 
   const result = await Transaction.aggregate(pipeline)
 
-  const transactionListMonth = result[0].list
-  const cashOutMonth = result[0].totalCashOut[0].total
-  const cashInMonth = result[0].totalCashIn[0].total
+  const { totalCashIn, totalCashOut } = result[0]
+  const transactionsListMonth = result[0].list
 
-  return { transactionListMonth, cashOutMonth, cashInMonth }
+  const cashOutMonth = totalCashOut.length === 0 ? 0 : totalCashOut[0].total
+
+  const cashInMonth = totalCashIn.length === 0 ? 0 : totalCashIn[0].total
+
+  return { transactionsListMonth, cashOutMonth, cashInMonth }
 }
 
 module.exports = forMonth
