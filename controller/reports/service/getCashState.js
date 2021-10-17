@@ -21,8 +21,6 @@ const getCashState = async (isIncoming, owner) => {
 
   const data = await Transaction.aggregate(pipeline)
 
-  if (!data.length === 0) return 0
-
   const total = data[0]?.total
 
   return total
