@@ -13,9 +13,7 @@ const getSpendingsLastSixMonth = async (req, res) => {
   res.status(HttpCode.OK).json({
     status: 'success',
     code: 200,
-    data: {
-      result: result
-    },
+    data: result,
     message: 'Last six month spendings report has been successufully prepared'
   })
 }
