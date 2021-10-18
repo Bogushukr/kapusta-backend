@@ -24,7 +24,7 @@ const getSpendingsForMonth = async (req, res) => {
       cashInMonth,
       details: result
     },
-    message: `Spending summary report for ${month}-${year} has been successufully prepared`
+    message: `Spending summary report for ${month}-${year} has been successfully prepared`
   })
 }
 

@@ -1,12 +1,12 @@
 const { HttpCode } = require('../../helpers/constants')
 const { Transaction, User } = require('../../model')
 
-const lengthChecker = (month) => {
-  const str = month.split('')
+const lengthChecker = (num) => {
+  const str = num.split('')
   if (str.length === 1) {
-    return `0${month}`
+    return `0${num}`
   }
-  return month
+  return num
 }
 
 const add = async (req, res, _) => {
