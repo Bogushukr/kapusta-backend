@@ -279,7 +279,9 @@
             "content": {}
           }
         }
-      },
+      }
+    },
+    "/api/transactions/{transactionId}": {
       "delete": {
         "tags": [
           "Transaction"
@@ -289,9 +291,7 @@
           {
             "in": "path",
             "name": "transactionId",
-            "schema": {
-              "type": "string"
-            },
+            "type": "string",
             "required": true,
             "description": "transaction Id"
           }
@@ -301,10 +301,7 @@
             "Bearer": []
           }
         ],
-        "requestBody": {
-          "description": "Delete",
-          "content": {}
-        },
+        "requestBody": {},
         "responses": {
           "200": {
             "description": "Successful delete",
@@ -347,7 +344,7 @@
         }
       }
     },
-    "/api/reports/cash-out/": {
+    "/api/reports/cash-out/{year}/{month}": {
       "get": {
         "tags": [
           "Reports"
@@ -386,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CashOutResponse"
+                  "$ref": "#/components/schemas/CashResponse"
                 }
               }
             }
@@ -398,7 +395,7 @@
         }
       }
     },
-    "/api/reports/cash-in/": {
+    "/api/reports/cash-in/{year}/{month}": {
       "get": {
         "tags": [
           "Reports"
@@ -436,6 +433,7 @@
             "description": "Success",
             "content": {
               "application/json": {
+                "status": "Success",
                 "schema": {
                   "$ref": "#/components/schemas/CashResponse"
                 }
