@@ -3,43 +3,11 @@ const router = express.Router()
 const { controllerWrapper, authenticate } = require('./../../middlewares')
 const ctrl = require('./../../controller/reports')
 
-// Routes for db reports
 
-// GET Balance
-router.get(
-  '/balance',
-  controllerWrapper(authenticate),
-  controllerWrapper(ctrl.balanceGet)
-)
-
-// ===== Cash-Out reports =====
-// GET Cash-Out report for Month. Returns summary report by categories and description
-router.get(
-  '/cash-out/:year/:month',
-  controllerWrapper(authenticate),
-  controllerWrapper(ctrl.getSpendingsForMonth)
-)
-
-// GET Cash-Out report for last six month
-router.get(
-  '/cash-out/last-six-month',
-  controllerWrapper(authenticate),
-  controllerWrapper(ctrl.getSpendingsLastSixMonth)
-)
-
-// ===== Cash-In reports
-// GET Cash-In report for Month. Returns summary report by categories and description
-router.get(
-  '/cash-in/:year/:month',
-  controllerWrapper(authenticate),
-  controllerWrapper(ctrl.getIncomingsForMonth)
-)
-
-// GET Cash-In report for last six month
-router.get(
-  '/cash-in/last-six-month',
-  controllerWrapper(authenticate),
-  controllerWrapper(ctrl.getIncomingsLastSixMonth)
-)
+router.get('/balance', controllerWrapper(authenticate), controllerWrapper(ctrl.balanceGet))
+router.get('/cash-out/:year/:month', controllerWrapper(authenticate), controllerWrapper(ctrl.getSpendingsForMonth))
+router.get('/cash-out/last-six-month', controllerWrapper(authenticate), controllerWrapper(ctrl.getSpendingsLastSixMonth))
+router.get('/cash-in/:year/:month', controllerWrapper(authenticate), controllerWrapper(ctrl.getIncomingsForMonth))
+router.get('/cash-in/last-six-month', controllerWrapper(authenticate), controllerWrapper(ctrl.getIncomingsLastSixMonth))
 
 module.exports = router

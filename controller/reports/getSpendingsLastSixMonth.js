@@ -14,7 +14,7 @@ const getSpendingsLastSixMonth = async (req, res) => {
     status: 'success',
     code: 200,
     data: result,
-    message: 'Last six month spendings report has been successufully prepared'
+    message: 'Last six month spending report has been successfully prepared'
   })
 }
 
