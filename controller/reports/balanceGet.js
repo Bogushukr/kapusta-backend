@@ -3,10 +3,11 @@ const getCashState = require('./service/getCashState')
 
 const balanceGet = async (req, res) => {
   const owner = req.user._id
+  const currentBalance = req.user.currentBalance
 
-  const cashOutBalance = await getCashState(false, owner)
-  const cashInBalance = await getCashState(true, owner)
-  const balance = cashInBalance - cashOutBalance
+  const cashInBalance = (await getCashState(true, owner)) || 0
+  const cashOutBalance = (await getCashState(false, owner)) || 0
+
 
   res.status(HttpCode.OK).json({
     status: 'success',
@@ -14,9 +15,9 @@ const balanceGet = async (req, res) => {
     data: {
       cashOutBalance: cashOutBalance,
       cashInBalance: cashInBalance,
-      balance: balance
+      balance: currentBalance
     },
-    message: `Total Balance: ${cashInBalance} - ${cashOutBalance} = ${balance}`
+    message: `Total Balance: ${currentBalance}`
   })
 }
 
