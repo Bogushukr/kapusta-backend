@@ -24,7 +24,7 @@ const getIncomingsForMonth = async (req, res) => {
       cashInMonth,
       details: result
     },
-    message: `Incoming summary report for ${month}-${year} has been successufully prepared`
+    message: `Incoming summary report for ${month}-${year} has been successfully prepared`
   })
 }
 

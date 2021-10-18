@@ -14,7 +14,7 @@ const getIncomingsLastSixMonth = async (req, res) => {
     status: 'success',
     code: 200,
     data: result,
-    message: 'Last six month incomings report has been successufully prepared'
+    message: 'Last six month incoming report has been successfully prepared'
   })
 }
 
